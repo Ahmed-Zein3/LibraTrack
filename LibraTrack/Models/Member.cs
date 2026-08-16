@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace LibraTrack.Models
+{
+    public class Member
+    {
+        private int _memberId;
+        public int MemberId
+        {
+            get { return _memberId; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Member ID must be greater than zero.");
+                }
+                _memberId = value;
+            }
+        }
+
+        private string _name = string.Empty;
+        public string Name
+        {
+            get { return _name; }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Name cannot be empty.");
+                }
+                _name = value;
+            }
+        }
+
+
+        private string _email = string.Empty;
+        public string Email
+        { 
+            get { return _email; }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || !value.Contains("@"))
+                {
+                    throw new ArgumentException("Invalid email address.");
+                }
+                _email = value;
+            }
+
+        }
+    }
+
+
+
+}

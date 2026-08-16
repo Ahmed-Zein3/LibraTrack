@@ -1,0 +1,36 @@
+﻿using LibraTrack.Demos;
+using LibraTrack.Models;
+
+
+namespace LibraTrack
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            DisplayLibraryItems();
+
+            Console.WriteLine();
+
+            ValueReferenceDemo.Run();
+           
+        }
+
+        public static void DisplayLibraryItems()
+        {
+            List<LibraryItem> items = new()
+            {
+                new Book { ItemId = 1, Title = "The Great Gatsby" },
+                new Dvd { ItemId = 2, Title = "Inception" },
+                new Magazine { ItemId = 3, Title = "National Geographic"}
+            };
+
+            foreach (var item in items)
+            {
+                Console.WriteLine($"Item ID: {item.ItemId}, Title: {item.Title}, Loan Period: " +
+                    $"{item.GetLoanPeriodDays()} days \n");
+            }
+        }
+
+    }
+}
