@@ -1,6 +1,8 @@
-﻿using LibraTrack.Interfaces;
+﻿using LibraTrack.Exceptions;
+using LibraTrack.Interfaces;
 namespace LibraTrack
 {
+
     public abstract class LibraryItem: IBorrowable
     {
         private int _itemId;
@@ -39,7 +41,7 @@ namespace LibraTrack
         {
             if (!IsAvailable)
             {
-                throw new InvalidOperationException("Item is not available.");
+                throw new ItemNotAvailableException("Item is not available.");
             }
             IsAvailable = false;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraTrack.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -50,6 +51,27 @@ namespace LibraTrack.Models
                 _email = value;
             }
 
+        }
+
+        public int LoanLimit { get; private set; } = 5;
+        public int ActiveLoanCount { get; private set; }
+
+        public void Borrow()
+        {
+            if(ActiveLoanCount >= LoanLimit)
+            {
+                throw new MemberLoanLimitExceededException("you hit the loan limit");
+            }
+            ActiveLoanCount++;
+        }
+
+        public void ReturnLoan()
+        {
+            if(ActiveLoanCount > 0)
+            {
+                ActiveLoanCount--;
+
+            }
         }
     }
 
