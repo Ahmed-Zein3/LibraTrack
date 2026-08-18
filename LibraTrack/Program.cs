@@ -1,138 +1,56 @@
-﻿using LibraTrack.Demos;
-using LibraTrack.Exceptions;
-using LibraTrack.Models;
+﻿using LibraTrack.Data;
+using LibraTrack.Demos;
 using LibraTrack.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 
 namespace LibraTrack
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            DisplayLibraryItems();
+            var builder = Host.CreateApplicationBuilder(args);
 
-            Console.WriteLine();
+            builder.Services.AddDbContext<LibraryDbContext>();
+            builder.Services.AddScoped<Catalog>();
+            using var app = builder.Build();
+            using var scope = app.Services.CreateScope();
 
-            ValueReferenceDemo.Run();
+            var catalog = scope.ServiceProvider.GetRequiredService<Catalog>();
+            //await CatalogDemo.TestStoredProcedureCheckout(catalog);
+            //await TestOpenLoansQuery(catalog);
+            //await TestCatalogCheckout(catalog, 1, 1);
+            //await CatalogDemo.TestCatalogReturn(catalog, 1, 2);
+            //await CatalogDemo.TestCatalogAdd(catalog);
 
-            Console.WriteLine();
+            //await TestCatalogGetAll(catalog);
+            //DisplayLibraryItems();
 
-            TryCatchTests();
+            //Console.WriteLine();
 
-            Console.WriteLine();
+            //ValueReferenceDemo.Run();
 
-            TestLoanLimit();
+            //Console.WriteLine();
 
-            Console.WriteLine();
+            //TryCatchTests();
 
-            TestCheckoutAndReturn();
+            //Console.WriteLine();
+
+            //TestLoanLimit();
+
+            //Console.WriteLine();
+
+            //TestCheckoutAndReturn();
+            //await TestAddMember();
+            //await TestGetMembers();
+            //await TestFindMember();
+
         }
 
-        public static void DisplayLibraryItems()
-        {
-            List<LibraryItem> items = new()
-            {
-                new Book { ItemId = 1, Title = "The Great Gatsby" },
-                new Dvd { ItemId = 2, Title = "Inception" },
-                new Magazine { ItemId = 3, Title = "National Geographic"}
-            };
-
-            foreach (var item in items)
-            {
-                Console.WriteLine($"Item ID: {item.ItemId}, Title: {item.Title}, Loan Period: " +
-                    $"{item.GetLoanPeriodDays()} days \n");
-            }
-        }
-
-
-        public static void TryCatchTests()
-        {
-            Member member = new()
-            {
-                MemberId = 1,
-                Name = "Ahmed",
-                Email = "ahmed@example.com"
-            };
-
-            LibraryItem item = new Book
-            {
-                ItemId = 1,
-                Title = "The Great Gatsby"
-            };
-
-            Catalog catalog = new();
-            catalog.AddItem(item);
-
-            try
-            {
-                catalog.Checkout(member, item);
-            }
-            catch (ItemNotAvailableException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-
-        }
-        public static void TestLoanLimit()
-        {
-            Member member1 = new()
-            {
-                MemberId = 2,
-                Name = "Test Member",
-                Email = "test@example.com"
-            };
-
-            try
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    member1.Borrow();
-                }
-            }
-            catch (MemberLoanLimitExceededException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public static void TestCheckoutAndReturn()
-        {
-            Member member2 = new()
-            {
-                MemberId = 12,
-                Name = "Test Member",
-                Email = "test@example.com"
-            };
-
-            LibraryItem item = new Book
-            {
-                ItemId = 5,
-                Title = "Song Of Ice And Fire"
-            };
-
-            Catalog catalog = new();
-
-            catalog.AddItem(item);
-
-            catalog.Checkout(member2, item);
-
-            Console.WriteLine($"Active Loans: {member2.ActiveLoanCount}");
-            Console.WriteLine($"Item Available: {item.IsAvailable}\n");
-
-            catalog.Return(member2, item);
-            Console.WriteLine($"Active Loans: {member2.ActiveLoanCount}");
-            Console.WriteLine($"Item Available: {item.IsAvailable}");
-        }
-
-
-
-
-
-
-
-
+         
+       
 
     }
 }

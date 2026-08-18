@@ -2,7 +2,7 @@
 using LibraTrack.Interfaces;
 namespace LibraTrack
 {
-
+ 
     public abstract class LibraryItem: IBorrowable
     {
         private int _itemId;
