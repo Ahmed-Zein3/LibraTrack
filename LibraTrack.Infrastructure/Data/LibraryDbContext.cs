@@ -1,8 +1,7 @@
-﻿
-using LibraTrack.Models;
+﻿using LibraTrack.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LibraTrack.Data
+namespace LibraTrack.Infrastructure.Data
 {
     public class LibraryDbContext : DbContext
     {

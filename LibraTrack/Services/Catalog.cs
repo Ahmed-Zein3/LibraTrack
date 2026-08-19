@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using LibraTrack.Data;
-using LibraTrack.Exceptions;
-using LibraTrack.Models;
+using LibraTrack.Core.Entities;
+
+using LibraTrack.Infrastructure.Data;
+
 
 
 namespace LibraTrack.Services
@@ -45,46 +46,46 @@ namespace LibraTrack.Services
         //    member.Borrow();
         //    item.Checkout();
         //}
-        public async Task CheckoutAsync(Member member, LibraryItem item)
-        {
-            if (!item.IsAvailable)
-            {
-                throw new ItemNotAvailableException("Item is not available.");
-            }
+        //public async Task CheckoutAsync(Member member, LibraryItem item)
+        //{
+        //    if (!item.IsAvailable)
+        //    {
+        //        throw new ItemNotAvailableException("Item is not available.");
+        //    }
 
-            member.Borrow();
-            item.Checkout();
+        //    member.Borrow();
+        //    item.Checkout();
 
-            LoanRecord loan = new()
-            {
-                MemberId = member.MemberId,
-                ItemId = item.ItemId,
-                DueDate = DateTime.UtcNow.AddDays(item.GetLoanPeriodDays())
-            };
+        //    LoanRecord loan = new()
+        //    {
+        //        MemberId = member.MemberId,
+        //        ItemId = item.ItemId,
+        //        DueDate = DateTime.UtcNow.AddDays(item.GetLoanPeriodDays())
+        //    };
 
-            await _context.Loans.AddAsync(loan);
+        //    await _context.Loans.AddAsync(loan);
 
-            await _context.SaveChangesAsync();
-        }
+        //    await _context.SaveChangesAsync();
+        //}
 
-        public async Task ReturnAsync(Member member, LibraryItem item)
-        {
-            member.ReturnLoan();
-            item.Return();
+        //public async Task ReturnAsync(Member member, LibraryItem item)
+        //{
+        //    member.ReturnLoan();
+        //    item.Return();
 
-            var loan = await _context.Loans
-                .FirstOrDefaultAsync(l =>
-                    l.MemberId == member.MemberId &&
-                    l.ItemId == item.ItemId &&
-                    l.ReturnedDate == null);
+        //    var loan = await _context.Loans
+        //        .FirstOrDefaultAsync(l =>
+        //            l.MemberId == member.MemberId &&
+        //            l.ItemId == item.ItemId &&
+        //            l.ReturnedDate == null);
 
-            if (loan != null)
-            {
-                loan.ReturnedDate = DateTime.UtcNow;
-            }
+        //    if (loan != null)
+        //    {
+        //        loan.ReturnedDate = DateTime.UtcNow;
+        //    }
 
-            await _context.SaveChangesAsync();
-        }
+        //    await _context.SaveChangesAsync();
+        //}
 
         public async Task<List<LoanRecord>> GetOpenLoansAsync()
         {
@@ -138,20 +139,20 @@ namespace LibraTrack.Services
                 .ToListAsync();
         }
 
-        public async Task<List<Member>> GetMembersWithMultipleLoansAsync()
-        {
-            return await _context.Members
-                .Where(m => _context.Loans
-                    .Count(l => l.MemberId == m.MemberId && l.ReturnedDate == null) > 1)
-                .ToListAsync();
-        }
+        //public async Task<List<Member>> GetMembersWithMultipleLoansAsync()
+        //{
+        //    return await _context.Members
+        //        .Where(m => _context.Loans
+        //            .Count(l => l.MemberId == m.MemberId && l.ReturnedDate == null) > 1)
+        //        .ToListAsync();
+        //}
 
-        public async Task<List<LoanRecord>> GetOverdueLoansAsync()
-        {
-            return await _context.Loans
-                .Where(l => l.ReturnedDate == null && l.DueDate < DateTime.UtcNow)
-                .ToListAsync();
-        }
+        //public async Task<List<LoanRecord>> GetOverdueLoansAsync()
+        //{
+        //    return await _context.Loans
+        //        .Where(l => l.ReturnedDate == null && l.DueDate < DateTime.UtcNow)
+        //        .ToListAsync();
+        //}
 
         public async Task CheckoutUsingStoredProcedureAsync(int memberId, int itemId)
         {

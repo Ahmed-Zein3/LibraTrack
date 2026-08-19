@@ -1,6 +1,6 @@
 ﻿
-
-namespace LibraTrack.Exceptions
+using LibraTrack.Core.Entities;
+namespace LibraTrack.Core.Exceptions
 {
    public class MemberLoanLimitExceededException:Exception
     {

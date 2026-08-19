@@ -1,9 +1,9 @@
 ﻿
-using LibraTrack.Models;
+using LibraTrack.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LibraTrack.Data.Configurations
+namespace LibraTrack.Infrastructure.Data
 {
     public class LibraryItemConfiguration : IEntityTypeConfiguration<LibraryItem>
     {

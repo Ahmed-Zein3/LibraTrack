@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using LibraTrack.Models;
+﻿using LibraTrack.Core.Entities;
+
 
 
 namespace LibraTrack.Demos

@@ -1,6 +1,6 @@
-﻿
+﻿using LibraTrack.Core.Entities;
 
-namespace LibraTrack.Exceptions
+namespace LibraTrack.Core.Exceptions
 {
     public class ItemNotAvailableException : Exception
     {

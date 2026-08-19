@@ -1,4 +1,5 @@
-﻿namespace LibraTrack.Models
+﻿using LibraTrack.Core.Entities;
+namespace LibraTrack.Core.Entities
 {
     public class Dvd : LibraryItem
     {

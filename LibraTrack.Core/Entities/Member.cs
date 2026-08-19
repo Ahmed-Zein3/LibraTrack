@@ -1,9 +1,5 @@
-﻿using LibraTrack.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LibraTrack.Models
+﻿using LibraTrack.Core.Exceptions;
+namespace LibraTrack.Core.Entities
 {
     public class Member
     {

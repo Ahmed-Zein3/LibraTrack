@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="LibraTrack.Core/LibraTrack.Core.csproj" Id="d385bae5-cc41-4159-808f-af750c13343e" />
+  <Project Path="LibraTrack.Infrastructure/LibraTrack.Infrastructure.csproj" Id="1057ad8b-a32a-44f9-bc4a-47d0b142cfc1" />
   <Project Path="LibraTrack/LibraTrack.csproj" />
 </Solution>

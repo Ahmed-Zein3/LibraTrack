@@ -1,4 +1,5 @@
-﻿namespace LibraTrack.Models
+﻿
+namespace LibraTrack.Core.Entities
 {
     public class LoanRecord
     {

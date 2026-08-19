@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LibraTrack.Models
+﻿
+namespace LibraTrack.Core.Entities
 {
    public class Magazine : LibraryItem
     {

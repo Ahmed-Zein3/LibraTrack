@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using LibraTrack.Exceptions;
-using LibraTrack.Models;
+﻿
+using LibraTrack.Core.Entities;
+using LibraTrack.Core.Exceptions;
 
 namespace LibraTrack.Demos
 {

@@ -1,7 +1,7 @@
 ﻿
-using LibraTrack;
 
-namespace LibraTrack.Models
+
+namespace LibraTrack.Core.Entities
 {
     public class Book : LibraryItem
     {

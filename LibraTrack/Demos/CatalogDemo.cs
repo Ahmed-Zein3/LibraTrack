@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LibraTrack.Core.Entities;
 
-using LibraTrack.Models;
 using LibraTrack.Services;
 
 namespace LibraTrack.Demos
@@ -26,27 +25,27 @@ namespace LibraTrack.Demos
             }
         }
 
-        public static async Task TestCatalogCheckout(Catalog catalog, int memberId, int itemId)
-        {
-            var member = await catalog.GetMemberByIdAsync(memberId);
-            var item = await catalog.GetByIdAsync(itemId);
+        //public static async Task TestCatalogCheckout(Catalog catalog, int memberId, int itemId)
+        //{
+        //    var member = await catalog.GetMemberByIdAsync(memberId);
+        //    var item = await catalog.GetByIdAsync(itemId);
 
-            if (member != null && item != null)
-            {
-                await catalog.CheckoutAsync(member, item);
-            }
-        }
+        //    if (member != null && item != null)
+        //    {
+        //        await catalog.CheckoutAsync(member, item);
+        //    }
+        //}
 
-        public static async Task TestCatalogReturn(Catalog catalog, int memberId, int itemId)
-        {
-            var member = await catalog.GetMemberByIdAsync(memberId);
-            var item = await catalog.GetByIdAsync(itemId);
+        //public static async Task TestCatalogReturn(Catalog catalog, int memberId, int itemId)
+        //{
+        //    var member = await catalog.GetMemberByIdAsync(memberId);
+        //    var item = await catalog.GetByIdAsync(itemId);
 
-            if (member != null && item != null)
-            {
-                await catalog.ReturnAsync(member, item);
-            }
-        }
+        //    if (member != null && item != null)
+        //    {
+        //        await catalog.ReturnAsync(member, item);
+        //    }
+        //}
 
 
         public static async Task TestOpenLoansQuery(Catalog catalog)

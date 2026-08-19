@@ -1,6 +1,6 @@
 ﻿
 
-namespace LibraTrack.Models
+namespace LibraTrack.Core.Entities
 {
     public struct LoanPeriod
     {

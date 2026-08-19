@@ -1,6 +1,8 @@
-﻿using LibraTrack.Exceptions;
-using LibraTrack.Interfaces;
-namespace LibraTrack
+﻿using LibraTrack.Core.Exceptions;
+
+using LibraTrack.Core.Interfaces;
+
+namespace LibraTrack.Core.Entities
 {
  
     public abstract class LibraryItem: IBorrowable
